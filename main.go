@@ -39,13 +39,13 @@ import (
 
 func NewMonitor() (*mon.Monitor, error) {
 	var bind4, bind6 string
-	if ln, err := net.Listen("tcp4", "127.0.0.1:0"); err != nil {
+	if ln, err := net.Listen("tcp4", "127.0.0.1:0"); err == nil {
 		// ipv4 enabled
 		ln.Close()
 		bind4 = "0.0.0.0"
 	}
 
-	if ln, err := net.Listen("tcp6", "[::1]:0"); err != nil {
+	if ln, err := net.Listen("tcp6", "[::1]:0"); err == nil {
 		// ipv6 enabled
 		ln.Close()
 		bind6 = "::"
@@ -102,7 +102,7 @@ func main() {
 	}
 
 	ownerRef := pod.OwnerReferences[0]
-	if ownerRef.Kind != "ReplicaSet" {
+	if ownerRef.Kind != "DaemonSet" {
 		klog.Fatalf("owner ref %s not DaemonSet", ownerRef.Kind)
 	}
 

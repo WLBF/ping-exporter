@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: ping-exporter
+  namespace: kube-system
+spec:
+  selector:
+    matchLabels:
+      app: ping-exporter
+  template:
+    metadata:
+      labels:
+        app: ping-exporter
+    spec:
+      serviceAccountName: ping-exporter
+      containers:
+      - name: ping-exporter
+        image: ping-exporter:v20220510-e52ece1-amd64
+        imagePullPolicy: Always
+        env:
+          - name: MY_POD_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: MY_POD_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace

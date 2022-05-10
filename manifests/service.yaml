@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: ping-exporter
+  namespace: kube-system
+  labels:
+    app: ping-exporter
+spec:
+  clusterIP: None
+  selector:
+    app: ping-exporter
+  ports:
+    - name: web
+      port: 8080
