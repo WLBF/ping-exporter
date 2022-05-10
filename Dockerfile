@@ -1,9 +1,11 @@
 ARG ARCH
 FROM golang:1.17
-ENV http_proxy "http://172.17.0.1:7890"
-ENV HTTP_PROXY "http://172.17.0.1:7890"
-ENV https_proxy "http://172.17.0.1:7890"
-ENV HTTPS_PROXY "http://172.17.0.1:7890"
+
+# ENV http_proxy "http://172.17.0.1:7890"
+# ENV HTTP_PROXY "http://172.17.0.1:7890"
+# ENV https_proxy "http://172.17.0.1:7890"
+# ENV HTTPS_PROXY "http://172.17.0.1:7890"
+
 WORKDIR /build
 ADD . .
 ARG ARCH
