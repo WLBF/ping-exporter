@@ -1,0 +1,8 @@
+namespace: kube-system
+
+image:
+  repository: ping-exporter
+  pullPolicy: IfNotPresent
+  tag: v0.1.0-amd64
+
+imagePullSecrets: []

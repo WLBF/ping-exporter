@@ -2,7 +2,7 @@ kind: Service
 apiVersion: v1
 metadata:
   name: ping-exporter
-  namespace: kube-system
+  namespace: {{ .Values.namespace }}
   labels:
     app: ping-exporter
 spec:

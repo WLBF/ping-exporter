@@ -1,4 +1,5 @@
-VERSION?=v$(shell date +%Y%m%d)-$(shell git rev-parse --short HEAD)
+# VERSION?=v$(shell date +%Y%m%d)-$(shell git rev-parse --short HEAD)
+VERSION?=$(shell git describe --tags --abbrev=0)
 REGISTRY?=localhost:5000
 IMAGE:=ping-exporter:$(VERSION)
 

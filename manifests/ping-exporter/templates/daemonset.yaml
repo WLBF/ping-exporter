@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: DaemonSet
 metadata:
   name: ping-exporter
-  namespace: kube-system
+  namespace: {{ .Values.namespace }}
 spec:
   selector:
     matchLabels:
@@ -12,11 +12,15 @@ spec:
       labels:
         app: ping-exporter
     spec:
+      {{- with .Values.imagePullSecrets }}
+      imagePullSecrets:
+        {{- toYaml . | nindent 8 }}
+      {{- end }}
       serviceAccountName: ping-exporter
       containers:
       - name: ping-exporter
-        image: ping-exporter:v20220510-e52ece1-amd64
-        imagePullPolicy: Always
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
         env:
           - name: MY_POD_NAME
             valueFrom:
