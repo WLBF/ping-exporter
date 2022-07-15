@@ -15,6 +15,8 @@ other pod belonging to the same DaemonSet.
 
 ## Installation
 
+Prebuild image repository: [fangangan/ping-expoter](https://hub.docker.com/repository/docker/fangangan/ping-exporter)
+
 ```
-kubectl apply -f manifests
+helm install ping-exporter manifests/ping-exporter
 ```
